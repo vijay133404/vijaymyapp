@@ -14,6 +14,7 @@
       <th>description</th>
 
       <th>Image</th>
+      <th>video</th>
       <th>category</th>
       <th colspan="3"></th>
     </tr>
@@ -28,7 +29,9 @@
         <td><%= blog.description %></td>
        
         <td><%= image_tag blog.image,:height=>"100", :width=>"100" %></td>
-
+        <td><%#= video_tag blog.video,:height=>"100", :width=>"100" %></td>
+        <td>  <%= blog.video %></td>
+         <td><%= video_tag blog.video,:size=> "320×240",:controls =>true %></td>
         <td>
          <%if blog.categry_id.present? %> 
          <%= Category.find(blog.categry_id).name %> 

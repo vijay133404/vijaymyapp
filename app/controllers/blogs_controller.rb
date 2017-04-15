@@ -42,11 +42,11 @@ class BlogsController < ApplicationController
     @blog.destroy
  
     redirect_to blogs_path , notice:'blogs was successfully delete' 
-  end
-
+  @blog = Blog.new(blog_params)
+end
  private
   def blog_params
-    params.require(:blog).permit(:title,:description ,:image,:categry_id)
+    params.require(:blog).permit(:title,:description ,:image,:categry_id,:video)
   end
 
 end

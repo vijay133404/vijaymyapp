@@ -11,6 +11,11 @@
   <strong>image:</strong> 
   <%= image_tag @blog.image, :height=>"100", :width=>"100" %> 
   </p> 
+   <p>
+    <strong>video:</strong> 
+  <%= video_tag @blog.video, :height=>"100", :width=>"100" %> 
+  </p> 
+  
 <% @blog.comments.each do |comment| %> 
   <p> 
     <strong>Commenter:</strong> 
