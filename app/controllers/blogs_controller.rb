@@ -14,14 +14,16 @@ class BlogsController < ApplicationController
        @blogs=Blog.all 
     end
      end
-     def create
-     @blog = Blog.new(blog_params)
-     @blog.save
-     redirect_to blogs_path ,notice:'blogs was successfully created' 
-   end
+     
+    def create
+        @blog = Blog.new(blog_params)
+       @blog.save
+       redirect_to blogs_path ,notice:'blogs was successfully created' 
+     end
 
- def edit
-  @blog=Blog.find(params[:id])
+   def edit
+        @blog=Blog.find(params[:id])
+
 
    end
     def show

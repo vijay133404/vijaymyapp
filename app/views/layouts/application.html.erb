@@ -18,7 +18,7 @@
       <%= text_field_tag :search, params[:search] , :placeholder => "Type here to search"%> 
       <%= text_field_tag :start_date, params[:start_date] , :placeholder => "Start date", :id=>"start-date"%> 
       <%= text_field_tag :end_date, params[:end_date] , :placeholder => "end_date" , :id=>"end-date"%> 
-      <%= submit_tag "Search", :class=>"btn btn-success"%> 
+      <%= submit_tag "Search", :class=>"btn btn-primary"%> 
     <%end%>
   <% else %>
     <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
