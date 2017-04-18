@@ -19,7 +19,8 @@
 <%=f.file_field :video%>
 </p>
 <p>
-<%= f.select(:categry_id, Category.all.collect {|u| [u.name, u.id]}, :prompt => 'Select Category') %> 
+<%=f.select(:categry_id, Category.all.collect {|u| [u.name, u.id]}, :prompt => 
+'Select Category') %> 
 </p>
 <p>
 <%=f.submit %>
