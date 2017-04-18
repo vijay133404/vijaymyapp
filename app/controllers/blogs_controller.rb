@@ -36,15 +36,15 @@ class BlogsController < ApplicationController
   end  
   
 	
-   def destroy
+  def destroy
     @blog = Blog.find(params[:id])
     @blog.destroy
  
     redirect_to blogs_path , notice:'blogs was successfully delete' 
   
    end
- private
-  def blog_params
+   private
+    def blog_params
     params.require(:blog).permit(:title,:description ,:image,:categry_id,:video)
   end
 

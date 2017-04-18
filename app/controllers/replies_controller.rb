@@ -19,8 +19,6 @@ class RepliesController < ApplicationController
     redirect_to "/blogs/#{params[:blog_id]}"
   end
 
-
-
     private
     def reply_params
       params.require(:reply).permit( :body)
