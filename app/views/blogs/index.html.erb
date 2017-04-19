@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 
 <% if params[:search].present? %>
 <h3> <%= @blogs.count%> Results found.</h3>
@@ -6,16 +6,21 @@
 
 <h1>blogs list</h1>
 
+<%= link_to 'New Blog', new_blog_path %>
+
 <table>
   <thead>
     <tr>
 
       <th>Title</th>
+
       <th>description</th>
+
       <th>category</th>
+
       <th>Image</th>
-      <th>video</th>
-      
+
+      <th>video</th> 
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -32,11 +37,12 @@
          <%= Category.find(blog.categry_id).name %> 
         <% end %>
         </td>
-        <td><%= image_tag blog.image,:height=>"100", :width=>"100" %></td>
+        <td><%#= image_tag blog.image,:height=>"100", :width=>"100" %></td>
         <td><%#= video_tag blog.video,:height=>"100", :width=>"100" %></td>
+        <td><td><%= image_tag blog.image_url(:thumb) if blog.image? %></td></td>
         
         
-         <td><%= video_tag blog.video,:size=> "320×240",:controls =>true %></td>
+         <td><%= video_tag blog.video,:controls =>true %></td>
         
         <td><%= link_to 'Show', blog %></td>
        

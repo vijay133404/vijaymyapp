@@ -7,6 +7,7 @@
   <strong>Comment:</strong>
   <%= comment.body %>
 </p>
+<tr>
 <p>
   <%= link_to 'Destroy Comment', [comment.blog, comment],
                method: :delete,
@@ -14,7 +15,7 @@
 </p>
 <p>
 <%= link_to 'Edit Comment',edit_blog_comment_path(id: comment.id,blog_id: @blog.id) %> </p>
-
+</tr>
 <h2> reply a comment</h2>
 <% @replies= Reply.where(:comment_id=> comment.id)%>
 
@@ -24,6 +25,4 @@
   </p>
   
 <%end%>
-
-
   <%= render 'replies/form', :comment=>comment %>    
