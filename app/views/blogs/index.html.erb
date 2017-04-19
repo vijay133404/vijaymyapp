@@ -1,14 +1,10 @@
 
-
-<% if params[:search].present? %>
-<h3> <%= @blogs.count%> Results found.</h3>
-<%end %>
-
 <h1>blogs list</h1>
 
 <%= link_to 'New Blog', new_blog_path %>
-
-<table>
+<body>
+<div class="bs-example">
+<table class="table table-striped">
   <thead>
     <tr>
 
@@ -39,7 +35,7 @@
         </td>
         <td><%#= image_tag blog.image,:height=>"100", :width=>"100" %></td>
         <td><%#= video_tag blog.video,:height=>"100", :width=>"100" %></td>
-        <td><td><%= image_tag blog.image_url(:thumb) if blog.image? %></td></td>
+         <td><%= image_tag blog.image_url(:thumb) if blog.image? %></td>
         
         
          <td><%= video_tag blog.video,:controls =>true %></td>
@@ -52,5 +48,6 @@
         <%end%>
   </tbody>
 </table>
+</div>
+</body>
 
-<%= link_to 'New Blog', new_blog_path %>

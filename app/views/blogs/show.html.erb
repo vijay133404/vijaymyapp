@@ -9,7 +9,8 @@
    </p> 
   <p> 
   <strong>image:</strong> 
-  <%= image_tag @blog.image, :height=>"100", :width=>"100" %> 
+  <td><%= image_tag @blog.image_url(:thumb) if @blog.image? %></td>
+        
   </p> 
    <p>
     <strong>video:</strong> 
