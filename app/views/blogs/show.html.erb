@@ -9,10 +9,10 @@
    </p> 
   <p> 
   <strong>image:</strong> 
-  <td><%= image_tag @blog.image_url(:thumb) if @blog.image? %></td>
-        
-  </p> 
-   <p>
+   <%@blog.images.each do |image|%> 
+    <%= image_tag image.image, :height=>"250", :width=>"250" %>
+    <%end%> 
+   
     <strong>video:</strong> 
   <%= video_tag @blog.video, :controls =>true %> 
   </p> 

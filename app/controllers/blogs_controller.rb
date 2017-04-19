@@ -18,7 +18,10 @@ class BlogsController < ApplicationController
   def create
     @blog = Blog.new(blog_params)
     @blog.save
-    redirect_to blogs_path ,notice:'blogs was successfully created' 
+    params[:blog][:image].each do |image|
+      Image.create(:image=>image,blog_id: @blog.id)
+    redirect_to @blog 
+  end
   end
 
   def edit
