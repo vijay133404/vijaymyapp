@@ -19,10 +19,11 @@ class BlogsController < ApplicationController
     @blog = Blog.new(blog_params)
     @blog.save
     params[:blog][:image].each do |image|
-      Image.create(:image=>image,blog_id: @blog.id)
-    redirect_to @blog 
-  end
-  end
+  
+      Image.create(:image=>image,blog_id:@blog.id)
+    end
+     redirect_to blogs_path
+    end
 
   def edit
     @blog=Blog.find(params[:id])
@@ -42,10 +43,9 @@ class BlogsController < ApplicationController
   def destroy
     @blog = Blog.find(params[:id])
     @blog.destroy
- 
     redirect_to blogs_path , notice:'blogs was successfully delete' 
   
-   end
+  end
    private
     def blog_params
     params.require(:blog).permit(:title,:description ,:image,:categry_id,:video)

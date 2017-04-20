@@ -10,7 +10,7 @@
   <p> 
   <strong>image:</strong> 
    <%@blog.images.each do |image|%> 
-    <%= image_tag image.image, :height=>"250", :width=>"250" %>
+    <%= image_tag image.image_url(:thumb) if image.image? %>
     <%end%> 
    
     <strong>video:</strong> 
@@ -24,3 +24,5 @@
     <%= render 'comments/form' %>
   
     <%= link_to 'Back', blogs_path %>
+<%#= image_tag blog.image_url(:thumb) if blog.image? %></td>
+        
