@@ -57,5 +57,6 @@ gem 'devise'
 gem 'activeadmin', github: 'activeadmin'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bootstrap-material-design-rails'
+gem "nested_form"
 
 

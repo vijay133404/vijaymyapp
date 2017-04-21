@@ -1,4 +1,5 @@
-  <%=form_for :blog, url:blogs_path do |f|%>
+
+  <%= nested_form_for @blog do |f| %>
 <p>
 <%=f.label :title%>
 <%=f.text_field :title%>
@@ -9,19 +10,26 @@
 </p>
 
 <p>
-<%=f.label :image%>
-<%=f.file_field :image, :multiple=>true%>
+
+ <table id="images"> 
+  <%= f.fields_for :images, :wrapper => false do |image_form| %> 
+    <tr class="fields"> 
+      <td><%= image_form.file_field :image %></td> 
+      <td><%= image_form.link_to_remove "Remove this image" %></td> 
+    </tr> 
+  <% end %> 
+</table> 
 </p>
+<p><%= f.link_to_add "Add a image", :images, "data-target" => "#images" %></p> 
+ 
 <p>
 <%f.label :video%>
 <%=f.file_field :video%>
 </p>
-<p>
 <%= f.select(:categry_id, Category.all.collect {|u| [u.name, u.id]}, :prompt => 'Select Category') %> 
-</p>
 <p>
-
 <%=f.submit %>
 </p>
 <%end%>
+
 <%= link_to 'Back', blogs_path %>

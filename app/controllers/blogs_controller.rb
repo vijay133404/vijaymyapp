@@ -7,7 +7,9 @@ class BlogsController < ApplicationController
 
 	def index
     if params[:search].present? 
-      @blogs= Blog.where('title LIKE ? OR description LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%") 
+
+      @blogs= Blog.where('title LIKE ? OR description LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
+     
     elsif params[:start_date].present? && params[:end_date].present? 
       @blogs = Blog.where('created_at >= ? AND created_at <=?', params[:start_date].to_date, params[:end_date].to_date)  
     else 
@@ -17,13 +19,11 @@ class BlogsController < ApplicationController
    
   def create
     @blog = Blog.new(blog_params)
-    @blog.save
-    params[:blog][:image].each do |image|
-  
-      Image.create(:image=>image,blog_id:@blog.id)
-    end
+    
+   @blog.save
      redirect_to blogs_path
     end
+  
 
   def edit
     @blog=Blog.find(params[:id])
@@ -35,10 +35,11 @@ class BlogsController < ApplicationController
 
   def update
     @blog=Blog.find(params[:id])
-    @blog.update(blog_params)
+    
+     @blog.update(blog_params)
     redirect_to blogs_path , notice:'blogs was successfully update' 
   end  
-  
+
 	
   def destroy
     @blog = Blog.find(params[:id])
@@ -48,7 +49,8 @@ class BlogsController < ApplicationController
   end
    private
     def blog_params
-    params.require(:blog).permit(:title,:description ,:image,:categry_id,:video)
+    params.require(:blog).permit(:title, :description, :image, :categry_id, :video, images_attributes:[:id,:image,:_destroy])
   end
+
 
 end

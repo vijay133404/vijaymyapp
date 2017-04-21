@@ -1,5 +1,10 @@
+<% if params[:search].present? %>
+<h3> <%= @blogs.count%> Results found.</h3>
 
-<h1>blogs list</h1>
+<%else%>
+<h3>no result found<h3>
+<%end%>
+<h3>Blogs list</h3>
 
 <%= link_to 'New Blog', new_blog_path %>
 <body>

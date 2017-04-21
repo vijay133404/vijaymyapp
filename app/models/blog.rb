@@ -8,4 +8,6 @@ class Blog < ApplicationRecord
       validates :title, presence: true,
                     length: { minimum: 2 }
 
+  accepts_nested_attributes_for :images
+
 end

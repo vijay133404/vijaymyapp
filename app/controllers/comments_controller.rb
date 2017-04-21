@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
 
  def destroy
     @blog = Blog.find(params[:blog_id])
+                     
     @comment = @blog.comments.find(params[:id])
     @comment.destroy
     redirect_to blog_path(@blog)
@@ -20,10 +21,10 @@ def edit
      @comment = Comment.find(params[:id]) 
   end 
    def update 
-     @blog = Blog.find(params[:blog_id]) 
-     @comment = Comment.find(params[:id]) 
+      @blog = Blog.find(params[:blog_id]) 
+      @comment = Comment.find(params[:id]) 
       @comment.update(comment_params)
-         flash[:notice] = "Comment Updated"
+       flash[:notice] = "Comment Updated"
       redirect_to @blog  
     end
   private
