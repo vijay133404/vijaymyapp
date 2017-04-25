@@ -1,15 +1,30 @@
+ 
+  <%= nested_form_for @blog, :html=>{:class=>"form-horizontal"} do |f| %>
 
-  <%= nested_form_for @blog do |f| %>
-<p>
-<%=f.label :title%>
-<%=f.text_field :title%>
-</p>
-<p>
-<%=f.label :description%>
-<%=f.text_field :description%>
-</p>
+ <fieldset>
 
-<p>
+<div class="form-group">
+<label class="col-md-4 control-label">Title </label>
+<div class="col-md-6  inputGroupContainer">
+ <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-heart"></i></span>
+ <%=f.text_field :title, :placeholder=>"Title",:class=>"form-control" %>
+  </div>
+     </div>
+      </div>
+
+
+<div class="form-group">
+
+<label class="col-md-4 control-label">description </label>
+
+<div class="col-md-6  inputGroupContainer">
+<div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-hand-up"></i></span>
+<%=f.text_field :description,:placeholder=>"description", :class=>"form-control" %>
+</div>
+</div>
+</div>
+
+
 
  <table id="images"> 
   <%= f.fields_for :images, :wrapper => false do |image_form| %> 
@@ -22,14 +37,100 @@
 </p>
 <p><%= f.link_to_add "Add a image", :images, "data-target" => "#images" %></p> 
  
-<p>
-<%f.label :video%>
-<%=f.file_field :video%>
-</p>
-<%= f.select(:categry_id, Category.all.collect {|u| [u.name, u.id]}, :prompt => 'Select Category') %> 
-<p>
-<%=f.submit %>
-</p>
-<%end%>
+<div class="form-group">
+<label class="col-md-4 control-label"> video</label>
+<div class="col-md-6  inputGroupContainer">
+ <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-facetime-video"></i></span>
+ <%=f.file_field :video, :placeholder=>"video",:class=>"form-control" %>
+  </div>
+     </div>
+      </div>
 
+
+    <div class="form-group">
+    <div class="col-md-6  inputGroupContainer">
+    <%= f.select(:categry_id, Category.all.collect {|u| [u.name, u.id]}, :prompt => 'Select Category') %> 
+   </div>
+   </div>
+
+
+     <p>
+         <%=f.submit %>
+        </p>
+<%end%>
+</fieldset>
+</form>
 <%= link_to 'Back', blogs_path %>
+
+
+
+
+
+ 
+
+
+
+  <script type="text/javascript">
+ 
+   $(document).ready(function() {
+    $('#new_blog').bootstrapValidator({
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            "blog[title]":{
+                validators: {
+                        stringLength: {
+                        min: 2,
+                    },
+                        notEmpty: {
+                        message: 'Please supply your first name'
+                    }
+                }
+            },
+             "blog[description]":{
+                validators: {
+                     stringLength: {
+                        min: 2,
+                    },
+                    notEmpty: {
+                        message: 'Please supply your last name'
+                    }
+                }
+            },
+           
+            "blog[video]" :{
+                validators: {
+                    notEmpty: {
+                        message: 'Please select your video'
+                    },
+                    
+                }
+            },
+            
+		
+ 	
+        .on('success.form.bv', function(e) {
+            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                $('#new_blog').data('bootstrapValidator').resetForm();
+
+            // Prevent form submission
+            e.preventDefault();
+
+            // Get the form instance
+            var $form = $(e.target);
+
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
+
+            // Use Ajax to submit form data
+            $.post($form.attr('action'), $form.serialize(), function(result) {
+                console.log(result);
+            }, 'json');
+        });
+});
+
+</script>

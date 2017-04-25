@@ -3,26 +3,29 @@
   <%= @blog.title %> 
 </p> 
 
-    <p> 
-   <strong>description:</strong> 
-  <%= @blog.description %> 
+  <p> 
+      <strong>description:</strong> 
+       <%= @blog.description %> 
    </p> 
   <p> 
-  <strong>image:</strong> 
-   <%@blog.images.each do |image|%> 
-    <%= image_tag image.image_url(:thumb) if image.image? %>
+    <strong>image:</strong> 
+      <%@blog.images.each do |image|%> 
+      <%= image_tag image.image_url(:thumb) if image.image? %>
     <%end%> 
-   
+   </p>
     <strong>video:</strong> 
-  <%= video_tag @blog.video, :controls =>true %> 
-  </p> 
-
-      <h2>Comments</h2>
-      <%= render @blog.comments%>
-
-       <h2>Add a comment:</h2>
-    <%= render 'comments/form' %>
+     <%= video_tag @blog.video, :controls =>true %> 
+   </p> 
   
+      <h2>Comments</h2>
+       <div class="comments-container">
+        <%= render 'comments/comments'%>
+         </div>
+       <h2>Add a comment:</h2>
+      
+        <%= render 'comments/form' %>
+    
+
     <%= link_to 'Back', blogs_path %>
 <%#= image_tag blog.image_url(:thumb) if blog.image? %></td>
         

@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   
     @blog = Blog.find(params[:blog_id])
     @comment = @blog.comments.create(comment_params)
-    redirect_to blog_path(@blog)
+    render 'blogs/create_comments'
   end
 
  def destroy
@@ -32,3 +32,5 @@ def edit
       params.require(:comment).permit(:commenter, :body)
     end
 end
+
+

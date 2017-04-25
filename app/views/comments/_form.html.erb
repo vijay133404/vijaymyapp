@@ -1,5 +1,5 @@
 
-<%= form_for([@blog, @blog.comments.build]) do |f| %>
+<%= form_for([@blog, @blog.comments.build],:remote=>true)  do |f| %>
   <p>
     <%= f.label :commenter %><br>
     <%= f.text_field :commenter %>

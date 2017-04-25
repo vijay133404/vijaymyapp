@@ -16,7 +16,9 @@ class RepliesController < ApplicationController
     @reply =  Reply.new(:body=>params[:reply][:body],:comment_id=>params[:reply][:comment_id])
     @reply.save
     flash[:notice]= "replies created"
-    redirect_to "/blogs/#{params[:blog_id]}"
+    @replies = Reply.where(:comment_id=>params[:reply][:comment_id])
+    #redirect_to "/blogs/#{params[:blog_id]}"
+    render'blogs/create_replies'
   end
 
     private
